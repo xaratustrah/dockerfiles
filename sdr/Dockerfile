@@ -13,9 +13,7 @@ COPY _bashrc /root/.bashrc
 
 RUN apt-get update && apt-get -y install build-essential devscripts mc net-tools
 
-RUN apt-get -y install geda geda-utils geda-examples gerbv pcb gtkwave gnucap gspiceui ngspice kicad iverilog freehdl
-
-# TODO: add qucs build
+RUN apt-get -y install hamradio-sdr hamradio-tools
 
 VOLUME ["/hostpwd"]
 

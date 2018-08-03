@@ -1,0 +1,21 @@
+# colorful prompt
+
+DARKGRAY="\[\033[1;30m\]"
+RED="\[\033[0;31m\]"
+GREEN="\[\033[0;32m\]"
+YELLOW="\[\033[0;33m\]"
+BLUE="\[\033[0;34m\]"
+DEFAULTCOLOR="\[\033[0m\]"
+PROMPT_COMMAND="PS1='$DARKGRAY[$GREEN\u$DARKGRAY@$YELLOW\h$DARKGRAY:$BLUE\w$DARKGRAY][$RED%$DARKGRAY]$DARKGRAY>$DEFAULTCOLOR '"
+
+# other options
+
+export LS_OPTIONS='--color=auto'
+eval "`dircolors`"
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'

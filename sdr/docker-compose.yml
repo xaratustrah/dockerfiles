@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  sdr:
+    image: 'xaratustrah/sdr:latest'
+    tty: true
+    environment:
+      DISPLAY: '$ip:0'
+    volumes:
+      - '/tmp/.X11-unix:/tmp/.X11-unix'
+      - '$PWD:/hostpwd'
+    sysctls:
+      - net.core.rmem_max=50000000
+      - net.core.wmem_max=1048576
+    command: /bin/bash

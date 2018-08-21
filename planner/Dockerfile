@@ -6,10 +6,10 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Installing dependencies
 
-RUN apt-get update && apt-get -y install nedit
+RUN apt-get update && apt-get -y install planner
 
-VOLUME ["/source"]
+VOLUME ["/hostpwd"]
 
 WORKDIR /source
 
-CMD ["nedit"]
+CMD ["planner"]

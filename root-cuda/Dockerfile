@@ -29,7 +29,7 @@ RUN cd /opt && \
 RUN sudo rm -rf /opt/nvidia_installers /opt/$CUDA_FILE
 
 # Ensure the CUDA libs and binaries are in the correct environment variables
-ENV LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64
 ENV PATH=$PATH:/usr/local/cuda-10.0/bin
 
 # run bash

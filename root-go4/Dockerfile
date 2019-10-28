@@ -7,14 +7,17 @@
 
 FROM rootproject/root-ubuntu16:latest
 
-ENV GO4_FILE go4-5.3.2
+ENV VERSION 6.0.0
+ENV GO4_FILE go4-${VERSION}
 ENV GO4_URL http://web-docs.gsi.de/~go4/download/${GO4_FILE}.tar.gz
 
-RUN sudo apt-get update && sudo apt-get install -q -y \
+RUN sudo apt-get update && sudo apt-get install -q -y --no-install-recommends \
   wget \
   build-essential \
-  module-init-tools
+  module-init-tools \
+  qt4-qmake
 
+RUN sudo ln -s /usr/share/qt4/bin/qmake /bin/qmake
 RUN cd /opt && \
   sudo wget $GO4_URL && \
   sudo tar xzvf  ${GO4_FILE}.tar.gz && \
@@ -23,4 +26,4 @@ RUN cd /opt && \
 # ENV PATH=$PATH
 
 # run bash
-CMD ["/opt/go4-5.3.2/bin/go4"]
+CMD ["/opt/go4-${VERSION}/bin/go4"]

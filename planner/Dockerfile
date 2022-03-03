@@ -1,15 +1,5 @@
-FROM debian:stable-slim
+FROM greyltc/archlinux-aur
 
-# Set environmental variables
-
-ENV DEBIAN_FRONTEND noninteractive
-
-# Installing dependencies
-
-RUN apt-get update && apt-get -y install planner
-
-VOLUME ["/hostpwd"]
-
-WORKDIR /source
+RUN su docker -c 'yay -S --noprogressbar --needed --noconfirm planner-git'
 
 CMD ["planner"]

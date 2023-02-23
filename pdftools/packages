@@ -5,3 +5,4 @@ qpdf
 pdftk
 pdfjam
 texlive-core
+perl-image-exiftool

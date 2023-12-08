@@ -26,3 +26,19 @@ then use the alias, for example:
 iqtools --nframes 400 --lframes 1024 -g /pwd/p_400_MeV_u_332_uA_0.tiq
 ```
 
+this also works for GUI apps. Under Linux you can do:
+
+```bash
+alias iqgui="xhost + && docker run -it --rm -e --volume '$(pwd):/pwd' --user $(id -u):$(id -g) DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix xaratustrah/analysistools iqgui && xhost -"
+alias barion="xhost + && docker run -it --rm -e --volume '$(pwd):/pwd' --user $(id -u):$(id -g) DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix xaratustrah/analysistools barion && xhost -"
+```
+
+then just run the command:
+
+```bash
+iqgui
+```
+or
+```bash
+barion
+```

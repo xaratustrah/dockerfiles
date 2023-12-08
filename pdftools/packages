@@ -6,3 +6,5 @@ pdftk
 pdfjam
 texlive-core
 perl-image-exiftool
+biber
+iputils

@@ -1,31 +1,54 @@
-#FROM debian:stable-slim
 FROM ubuntu:latest
 
-# Set environmental variables
+# Set environment variable to avoid interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
 
-ENV DEBIAN_FRONTEND noninteractive
-ENV TERM xterm-256color
-
-# Installing dependencies
-
-# RUN echo 'deb http://deb.debian.org/debian stretch main contrib non-free' >> /etc/apt/sources.list
-
-COPY _bashrc /root/.bashrc
-
-RUN apt-get update
-RUN apt-get install -q -y --no-install-recommends software-properties-common
-RUN add-apt-repository -y ppa:myriadrf/drivers
-RUN apt-get update && apt-get install -q -y --no-install-recommends \
-    python3-pip python3-pyqt5 python3-numpy python3-scipy \
-    soapysdr-tools python3-soapysdr python-dev swig soapysdr \
-    python3-soapysdr soapysdr-module-lms7 libsoapysdr-dev limesuite \
-    liblimesuite-dev limesuite-udev limesuite-images \
-    hamradio-sdr hamradio-tools \
+# Update package lists and install the required packages
+RUN apt-get update && apt-get install -y \
+    clang-18 \
+    cmake \
+    git \
+    gnuradio \
+    gqrx-sdr \
+    hamradio-sdr \
+    hamradio-tools \
     libboost-all-dev \
-    gnuradio
+    liblimesuite-dev \
+    libsoapysdr-dev \
+    limesuite \
+    limesuite-udev \
+    ninja-build \
+    python3-dev \
+    python3-numpy \
+    python3-pyqt5 \
+    python3-scipy \
+    python3-soapysdr \
+    rtl-sdr \
+    soapyosmo-common0.8 \
+    soapyremote-server \
+    soapysdr-tools \
+    soapysdr0.8-module-airspy \
+    soapysdr0.8-module-all \
+    soapysdr0.8-module-audio \
+    soapysdr0.8-module-bladerf \
+    soapysdr0.8-module-hackrf \
+    soapysdr0.8-module-lms7 \
+    soapysdr0.8-module-mirisdr \
+    soapysdr0.8-module-osmosdr \
+    soapysdr0.8-module-redpitaya \
+    soapysdr0.8-module-remote \
+    soapysdr0.8-module-rtlsdr \
+    soapysdr0.8-module-uhd \
+    swig && \
+    rm -rf /var/lib/apt/lists/*
 
-VOLUME ["/hostpwd"]
-
-WORKDIR /hostpwd
+# Clone the repository and build the project
+WORKDIR /tmp
+RUN git clone https://github.com/fair-acc/gnuradio4.git && \
+    cd gnuradio4 && \
+    mkdir build && \
+    cd build && \
+    #cmake -G Ninja -DCMAKE_C_COMPILER=clang-18 -DCMAKE_CXX_COMPILER=clang++-18 -DCMAKE_BUILD_TYPE=Debug -DLLVM_USE_LINKER=lld .. && \
+    #ninja
 
 CMD ["bash"]

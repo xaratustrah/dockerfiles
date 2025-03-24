@@ -9,7 +9,7 @@ Here `.` means using the current directory as the build context. Change the `ima
 
 2.Create a container with this image  
 `xhost +local:docker`  
-`docker run -it --rm \`  
+`docker run -it \`  
 `  -e DISPLAY=$DISPLAY \`  
 `  -e XDG_RUNTIME_DIR=/tmp/runtime-root \`   
 `  -e PULSE_SERVER=unix:/run/user/1000/pulse/native \`  

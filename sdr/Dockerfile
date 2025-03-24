@@ -46,7 +46,9 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /tmp
 RUN git clone https://github.com/fair-acc/gnuradio4.git && \ 
     cd gnuradio4 && \
-    cmake -S . -B build && \
-    cmake --build build -- -j$(nproc) 
+    mkdir build && \
+    cd build && \
+    cmake -G Ninja .. && \
+    ninja
     
 CMD ["bash"]

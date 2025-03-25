@@ -44,12 +44,11 @@ RUN apt-get update && apt-get install -y \
 
 # Clone the repository and build the project
 WORKDIR /tmp
-RUN git clone https://github.com/fair-acc/gnuradio4.git && \
+RUN git clone https://github.com/fair-acc/gnuradio4.git && \ 
     cd gnuradio4 && \
     mkdir build && \
-    cd build 
-    #cd build && \
-    #cmake -G Ninja -DCMAKE_C_COMPILER=clang-18 -DCMAKE_CXX_COMPILER=clang++-18 -DCMAKE_BUILD_TYPE=Debug -DLLVM_USE_LINKER=lld .. && \
-    #ninja
-
+    cd build && \
+    cmake -G Ninja .. && \
+    ninja
+    
 CMD ["bash"]

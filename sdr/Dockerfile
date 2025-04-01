@@ -49,6 +49,7 @@ RUN git clone https://github.com/fair-acc/gnuradio4.git && \
     mkdir build && \
     cd build && \
     cmake -G Ninja .. && \
-    ninja
+    ninja && \
+    ninja install
     
 CMD ["bash"]
